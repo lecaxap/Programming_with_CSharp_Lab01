@@ -12,17 +12,53 @@ namespace Lab01
         private int id;
         private decimal sum;
         private string description;
-        private string currency;
+        private CurrencyEnum currency;
         private Category category;
         private DateTime date;
         //private File file;
 
-        public string Description { get => description; set => description = value; }
-        public string Currency { get => currency; set => currency = value; }
+
+        public Transaction(int id, decimal sum, string description) {
+            this.id = id;
+            this.sum = sum;
+            this.description = description;
+            date = DateTime.Now;
+
+            Console.WriteLine("Please choose currency for this transaction. EUR - 1, UAH - 2, USD - 3");
+            string currencyResponse = Console.ReadLine();
+            while (currencyResponse != "1" || currencyResponse != "2" || currencyResponse != "3")
+            {
+                Console.WriteLine("Please choose currency for this transaction. EUR - 1, UAH - 2, USD - 3");
+                currencyResponse = Console.ReadLine();
+            }
+            switch (currencyResponse)
+            {
+                case "1":
+                    currency = CurrencyEnum.EUR;
+                    break;
+                case "2":
+                    currency = CurrencyEnum.UAH;
+                    break;
+                case "3":
+                    currency = CurrencyEnum.USD;
+                    break;
+            };           
+        }
+
         public decimal Sum { get => sum; set => sum = value; }
         public DateTime Date { get => date; set => date = value; }
-        internal Category Category { get => category; set => category = value; }
-        public int Id { get => id; set => id = value; }
+
+        public override string ToString()
+        {
+            switch (description) {
+                case "":
+                    return id + ": sum - " + sum + currency+", "+date;
+                default:
+                    return id + ": sum - " + sum + currency + ", " + description + ", " + date;
+
+            }
+        }
+
 
     }
 }

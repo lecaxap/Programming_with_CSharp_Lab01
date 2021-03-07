@@ -11,13 +11,14 @@ namespace Lab01
         private int id;
         private string name;
         private string description;
-        private string colour;
-       // private string icon;
+        //private string colour;
+        // private string icon;
 
-        public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
-        public string Colour { get => colour; set => colour = value; }
-        public int Id { get => id; set => id = value; }
-
+        public Category(int id, string name, string description)
+        {
+            this.id = id;
+            this.name = name;
+            this.description = description;
+        }
     }
 }

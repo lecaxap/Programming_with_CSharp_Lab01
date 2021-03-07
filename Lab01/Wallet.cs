@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lab01
 {
+    public enum CurrencyEnum { EUR, UAH, USD };
+
     class Wallet
     {
-        private enum CurrencyEnum {EUR, UAH, USD};
 
         private int id;
         private string name;
@@ -18,11 +19,7 @@ namespace Lab01
         List<Category> categories;
         List<Transaction> transactions;
 
-        public string Name { get => name; set => name = value; }
         public decimal Balance { get => balance; set => balance = value; }
-        public string Description { get => description; set => description = value; }
-        public int Id { get => id; set => id = value; }
-        private CurrencyEnum Currency { get => currency; set => currency = value; }
 
         public Wallet(int id, string name, decimal balance, string description)
         {
@@ -56,7 +53,70 @@ namespace Lab01
 
         public void shareWallet() { }
 
-        private void AddTransaction() { }
+        private void AddTransaction(int id) {
+            Console.WriteLine("Please type the sum of the transaction");
+            decimal sumTransaction = 0;
+            string sumResponse = Console.ReadLine();
+            bool parsed = decimal.TryParse(sumResponse, out sumTransaction);
+            while (!parsed)
+            {
+                Console.WriteLine("Please type the sum of the transaction as a number");
+                sumResponse = Console.ReadLine();
+            }
+
+            balance = balance + sumTransaction;
+      
+            Console.WriteLine("Would you like to add a description? Type Y if yes or anything else if not");
+            string responseDescription = Console.ReadLine();
+            string descriptionTransaction = "";
+            if (responseDescription == "Y")
+            {
+                Console.WriteLine("Please type the description");
+                descriptionTransaction = Console.ReadLine();
+            }
+
+            transactions.Add(new Transaction(id, sumTransaction, descriptionTransaction));
+        }
+
+        public override string ToString()
+        {
+            switch (description)
+            {
+                case "":
+                    return id + ": " + name + ", balance: " + balance + currency;
+                default:
+                    return id + ": " + name + ", balance: " + balance + currency + ", " + description;
+            }
+            
+        }
+
+        public decimal incomeMonth() {
+            decimal sum = 0;
+            foreach (Transaction t in transactions) {
+                if (t.Date.Month>=DateTime.Now.Month-1)
+                    if (t.Sum > 0) sum += t.Sum;
+            }
+            return sum;
+        }
+
+        public decimal expensesMonth()
+        {
+            decimal sum = 0;
+            foreach (Transaction t in transactions)
+            {
+                if (t.Date.Month >= DateTime.Now.Month - 1)
+                    if (t.Sum < 0) sum -= t.Sum;
+            }
+            return sum;
+        }
+
+        public void showTransactions(int index) {
+            index=transactions.Count()-index;
+            for (int i = index; i < index + 10; i++) {
+                if (i < transactions.Count())
+                    Console.WriteLine(transactions[i].ToString());
+            }
+        } 
 
     }
 }

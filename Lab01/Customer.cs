@@ -13,7 +13,7 @@ namespace Lab01
         private string surname;
         private string email;
         private List<Wallet> wallets;
-        private List<Category> category;
+        private List<Category> categories;
 
         public int Id { get => id;}
 
@@ -23,10 +23,10 @@ namespace Lab01
             this.surname = surname;
             this.email = email;
             wallets = new List<Wallet>();
-            category = new List<Category>();
+            categories = new List<Category>();
         }
 
-        public void addWallet(int id) {
+        public void createWallet(int id) {
             Console.WriteLine("Please type the name of the wallet");
             string nameWallet = Console.ReadLine();
             while (nameWallet.Length < 1) {
@@ -56,6 +56,32 @@ namespace Lab01
             wallets.Add(new Wallet(id, nameWallet, balanceWallet, descriptionWallet));
         }
 
-        
+        public void createCategory(int id)
+        {
+            Console.WriteLine("Please type the name of the category");
+            string nameCategory = Console.ReadLine();
+            while (nameCategory.Length < 1)
+            {
+                Console.WriteLine("Please type the name of the category. It should contain something");
+                nameCategory = Console.ReadLine();
+            }
+
+            Console.WriteLine("Would you like to add a description? Type Y if yes or anything else if not");
+            string responseDescription = Console.ReadLine();
+            string descriptionCategory = "";
+            if (responseDescription == "Y")
+            {
+                Console.WriteLine("Please type the description");
+                descriptionCategory = Console.ReadLine();
+            }
+
+            categories.Add (new Category(id, nameCategory, descriptionCategory));
+        }
+
+        public override string ToString()
+        {
+            return id+": "+name+" "+surname+", "+email;
+        }
+
     }
 }
