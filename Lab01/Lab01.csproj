@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Wallet.cs" />
   </ItemGroup>

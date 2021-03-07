@@ -12,12 +12,11 @@ namespace Lab01
         private string name;
         private string description;
         private string colour;
-        private string icon;
+       // private string icon;
 
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public string Colour { get => colour; set => colour = value; }
-        public string Icon { get => icon; set => icon = value; }
         public int Id { get => id; set => id = value; }
 
     }
