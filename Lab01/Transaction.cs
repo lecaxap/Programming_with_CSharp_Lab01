@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +12,8 @@ namespace Lab01
         private decimal sum;
         private string description;
         private CurrencyEnum currency;
-        private Category category;
         private DateTime date;
-        //private File file;
+        private string file;
 
 
         public Transaction(int id, decimal sum, string description) {
@@ -23,7 +21,8 @@ namespace Lab01
             this.sum = sum;
             this.description = description;
             date = DateTime.Now;
-
+            
+            //вибір валюти транзакції
             Console.WriteLine("Please choose currency for this transaction. EUR - 1, UAH - 2, USD - 3");
             string currencyResponse = Console.ReadLine();
             while (currencyResponse != "1" || currencyResponse != "2" || currencyResponse != "3")
@@ -47,6 +46,7 @@ namespace Lab01
 
         public decimal Sum { get => sum; set => sum = value; }
         public DateTime Date { get => date; set => date = value; }
+        public int Id { get => id;  }
 
         public override string ToString()
         {

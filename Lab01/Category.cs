@@ -11,8 +11,8 @@ namespace Lab01
         private int id;
         private string name;
         private string description;
-        //private string colour;
-        // private string icon;
+        private string colour;
+        private string icon;
 
         public Category(int id, string name, string description)
         {
@@ -20,5 +20,8 @@ namespace Lab01
             this.name = name;
             this.description = description;
         }
+
+        public string Name { get => name; set => name = value; }
+        public int Id { get => id; }
     }
 }

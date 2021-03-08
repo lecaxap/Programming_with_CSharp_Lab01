@@ -20,6 +20,7 @@ namespace Lab01
         List<Transaction> transactions;
 
         public decimal Balance { get => balance; set => balance = value; }
+        public int Id { get => id; }
 
         public Wallet(int id, string name, decimal balance, string description)
         {
@@ -30,6 +31,7 @@ namespace Lab01
             categories = new List<Category>();
             transactions = new List<Transaction>();
 
+            //вибір валюти гаманця
             Console.WriteLine("Please choose currency for this wallet. EUR - 1, UAH - 2, USD - 3");
             string currencyResponse = Console.ReadLine();
             while (currencyResponse != "1" || currencyResponse != "2" || currencyResponse != "3")
@@ -51,9 +53,23 @@ namespace Lab01
             };
         }
 
-        public void shareWallet() { }
+        //поділитися гаманцем
+       /* public void shareWallet() {
+            Console.WriteLine("Please type the name and the surname of a customer " +
+                "that you would like to share your wallet with, separate name and surname with space");
+            string response = Console.ReadLine();
+            string[] nameSurname = response.Split();
+            while (nameSurname.Length != 2)
+            {
+                Console.WriteLine("Type the name and the surname of the chosen customer, separated by a space. You did it wrong");
+                response = Console.ReadLine();
+                nameSurname = response.Split();
+            }
 
-        private void AddTransaction(int id) {
+        }*/
+
+        
+        public void AddTransaction(int id) {
             Console.WriteLine("Please type the sum of the transaction");
             decimal sumTransaction = 0;
             string sumResponse = Console.ReadLine();
@@ -76,6 +92,28 @@ namespace Lab01
             }
 
             transactions.Add(new Transaction(id, sumTransaction, descriptionTransaction));
+        }
+
+        public void editTransaction(int id) {
+            int current = 0;
+            foreach (Transaction t in transactions)
+            {
+                if (t.Id == id)
+                    current = transactions.IndexOf(t);
+            }
+            balance -= transactions[current].Sum;
+            transactions.Remove(transactions[current]);
+            AddTransaction(id);
+        }
+
+        public void deleteTransaction(int id) {
+            int current= 0;
+            foreach (Transaction t in transactions) {
+                if (t.Id == id)
+                    current = transactions.IndexOf(t);
+            }
+            balance -= transactions[current].Sum;
+            transactions.Remove(transactions[current]);
         }
 
         public override string ToString()

@@ -54,8 +54,34 @@ namespace Lab01
             }
 
             wallets.Add(new Wallet(id, nameWallet, balanceWallet, descriptionWallet));
+
+            //визначення категорій гаманця
+            Console.WriteLine("Which categories would you like to add to this wallet?");
+            foreach (Category c in categories) {
+                Console.WriteLine(c.Name);
+            }
+            Console.WriteLine("Type the name of category that you would like to add. Type 0 to stop");
+            string responseCategory = Console.ReadLine();
+            while (responseCategory != "0") {
+                bool check = false;
+                foreach (Category c in categories)
+                {
+                    if (c.Name == responseCategory)
+                    {
+                        if (!categories.Contains(c))
+                        {
+                            categories.Add(c);
+                            check = true;
+                        }
+                    }
+                }
+                if (!check) Console.WriteLine("Such category doesn't exist or already added");
+                Console.WriteLine("Type the name of category that you would like to add. Type 0 to stop");
+                responseCategory = Console.ReadLine();
+            }
         }
 
+        //створення категорій для користувача
         public void createCategory(int id)
         {
             Console.WriteLine("Please type the name of the category");
