@@ -38,7 +38,7 @@ namespace Lab01
             decimal balanceWallet = 0;
             string balanceResponse = Console.ReadLine();
             bool parsed = decimal.TryParse(balanceResponse, out balanceWallet);
-            while (!parsed || balanceWallet<0)
+            while (!parsed && balanceWallet <0)
             {
                 Console.WriteLine("Please type a non-negative balance of the wallet");
                 balanceResponse = Console.ReadLine();

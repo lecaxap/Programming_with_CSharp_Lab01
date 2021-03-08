@@ -52,7 +52,7 @@ namespace Lab01
                 Console.WriteLine("Would you like to proceed as an existing customer or create a new one for yourself?" +
                     " If you are new - press 1, if you would like to proceed - press 2.");
                 string responseFirst = Console.ReadLine();
-                while (responseFirst != "1" || responseFirst != "2") {
+                while (responseFirst != "1" && responseFirst != "2") {
                     Console.WriteLine("Would you like to proceed as an existing customer or create a new one for yourself?" +
                     " If you are new - press 1, if you would like to proceed - press 2.");
                     responseFirst = Console.ReadLine();

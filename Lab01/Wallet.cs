@@ -34,7 +34,7 @@ namespace Lab01
             //вибір валюти гаманця
             Console.WriteLine("Please choose currency for this wallet. EUR - 1, UAH - 2, USD - 3");
             string currencyResponse = Console.ReadLine();
-            while (currencyResponse != "1" || currencyResponse != "2" || currencyResponse != "3")
+            while (currencyResponse != "1" && currencyResponse != "2" && currencyResponse != "3")
             {
                 Console.WriteLine("Please choose currency for this wallet. EUR - 1, UAH - 2, USD - 3");
                 currencyResponse = Console.ReadLine();
